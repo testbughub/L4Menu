@@ -1,4 +1,4 @@
-L4 Menu for RetroPie + GPi case
+L4 Menu for RetroPie
 
 # Install
 Run install.sh as root.
