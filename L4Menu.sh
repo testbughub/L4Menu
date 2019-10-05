@@ -1,10 +1,9 @@
 #!/bin/bash
 
-SERVERIP=$(cat ./CHANGEME/SERVER.txt | head -n1)
-SERVERPORT=$(cat ./CHANGEME/SERVER.txt | tail -n1)
-UNAME=$(cat ./CHANGEME/AUTH.txt | head -n2 | tail -n1)
-PASS=$(cat ./CHANGEME/AUTH.txt | head -n4 | tail -n1)
-SSHID=$(cat ./CHANGEME/AUTH.txt | tail -n1)
+SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
+RETROPIE=$(cat ./CHANGEME/PATHS.txt | head -n2 | tail -n1)
+PATHSSET=$(cat /usr/share/L4Menu/.paths)
+MOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
 
 function L4Menu() {
   MMSEL=$(whiptail \
@@ -49,21 +48,21 @@ function L4Menu() {
       SSSEL=$(whiptail \
       --title "Save Sync" \
       --menu "Select option" 10 40 2 \
-      "1" "gretro > burken" \
-      "2" "burken > gretro" 3>&1 1>&2 2>&3)
+      "1" "RetroPie > Server" \
+      "2" "Server > RetroPie" 3>&1 1>&2 2>&3)
       case $SSSEL in
         1)
-          if whiptail --title "Save Sync" --yesno "This will sync save states from gretro to burken. Do you want to continue?" 10 40 2 ;
+          if whiptail --title "Save Sync" --yesno "This will sync save states from RetroPie to the server. Do you want to continue?" 10 40 2 ;
           then
-            sudo cp /etc/fstab.hdd /etc/fstab
+            sudo mount -t cifs //$SERVERIP/roms $MOUNTPATH
             if sudo mount -a ;
             then
-              sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/hdd4ROMS/
-              sudo umount /mnt/hdd4ROMS
+              sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/roms/
+              sudo umount /mnt
               whiptail --title "Save Sync" --msgbox "Successfully synced with burken." 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
-              whiptail --title "Failed" --msgbox "Unable to mount hdd4ROMS" 8 45
+              whiptail --title "Failed" --msgbox "Unable to mount server" 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
@@ -71,17 +70,17 @@ function L4Menu() {
           fi
         ;;
         2)
-          if whiptail --title "Save Sync" --yesno "This will sync save states from burken to gretro. Do you want to continue?" 10 40 2 ;
+          if whiptail --title "Save Sync" --yesno "This will sync save states from the server to RetroPie. Do you want to continue?" 10 40 2 ;
           then
-            sudo cp /etc/fstab.hdd /etc/fstab
+            sudo mount -t cifs //$SERVERIP/roms $MOUNTPATH
             if sudo mount -a ;
             then
-              sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/hdd4ROMS/* /home/pi/RetroPie/roms/
-              sudo umount /mnt/hdd4ROMS
-              whiptail --title "Save Sync" --msgbox "Successfully synced with burken." 8 45
+              sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/roms/* /home/pi/RetroPie/roms/
+              sudo umount /mnt
+              whiptail --title "Save Sync" --msgbox "Successfully synced with the server." 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
-              whiptail --title "Failed" --msgbox "Unable to mount hdd4ROMS" 8 45
+              whiptail --title "Failed" --msgbox "Unable to mount the server to '$MOUNTPATH'" 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else

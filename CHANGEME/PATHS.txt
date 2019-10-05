@@ -1,4 +1,4 @@
 # RetroPie
 /home/pi/RetroPie
-# Default Mount Point
+# Mount Point
 /mnt
