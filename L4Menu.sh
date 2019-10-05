@@ -1,5 +1,11 @@
 #!/bin/bash
 
+SERVERIP=$(cat ./CHANGEME/SERVER.txt | head -n1)
+SERVERPORT=$(cat ./CHANGEME/SERVER.txt | tail -n1)
+USERNAME=$(cat ./CHANGEME/AUTH.txt | head -n2 | tail -n1)
+PASSWORD=$(cat ./CHANGEME/AUTH.txt | head -n4 | tail -n1)
+SSHID=$(cat ./CHANGEME/AUTH.txt | tail -n1)
+
 function L4Menu() {
   MMSEL=$(whiptail \
   --title "L4 Menu" \
@@ -18,62 +24,26 @@ function L4Menu() {
       sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
     ;;
     2)
-      MOSEL=$(whiptail \
-      --title "L4 Menu > Mount" \
-      --menu "Where should it be mounted?" 12 40 4 \
-      "1" "hdd" \
-      "2" "roms" \
-      "3" "burken + skyscraper" \
-      "4" "Dismount all" 3>&1 1>&2 2>&3)
-      case $MOSEL in
-        1)
-          sudo umount /home/pi/RetroPie/roms
-          sudo cp /etc/fstab.hdd /etc/fstab
-          if sudo mount -a ;
-          then
-            whiptail --title "Success" --msgbox "Successfully mounted in '/mnt/hdd4ROMS'." 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          else
-            whiptail --title "Failed" --msgbox "Unable to mount hdd4ROMS" 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          fi
-        ;;
-        2)
-          sudo umount /home/pi/RetroPie/roms
-          sudo cp /etc/fstab.rom /etc/fstab
-          if sudo mount -a ;
-          then
-            whiptail --title "Success" --msgbox "Successfully mounted in '~/RetroPie/roms'." 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          else
-            whiptail --title "Failed" --msgbox "Unable to mount roms" 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          fi
-        ;;
-        3)
-          sudo cp /etc/fstab.bur /etc/fstab
-          if sudo mount -a ;
-          then
-            whiptail --title "Success" --msgbox "Successfully mounted in '/mnt/burken' and '/mnt/skyscraper'." 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          else
-            whiptail --title "Failed" --msgbox "Unable to mount burken" 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          fi
-        ;;
-        4)
-          if whiptail --title "Dismount all" --yesno "This will dismount burken. Continue?" 10 40 2 ;
-          then
-            sudo umount /mnt/burken /mnt/skyscraper /mnt/hdd4ROMS /home/pi/RetroPie/roms
-            whiptail --title "Dismount all" --msgbox "Successfully dismounted burken" 8 45
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          fi
-        ;;
-        *)
+      MOUNTPOINT=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
+      ANSWER=$?
+      if [ $ANSWER = '/mnt' ]; then
+        if sudo mount -t cifs -o user=$USERNAME //$SERVERIP/roms /mnt ;
+        then
+          whiptail --title "Mount" --msgbox "Successfully mounted server on '/mnt'."
+        else
+          whiptail --title "Mount" --msgbox "Unable to mount server."
           sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-      esac
+        fi
+      else
+        if sudo mount -t cifs -o user=$USERNAME //$SERVERIP/roms $ANSWER ;
+        then
+          whiptail --title "Mount" --msgbox "Successfully mounted server on '$ANSWER'."
+          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+        else
+          whiptail --title "Mount" --msgbox "Unable to mount server on '$ANSWER'."
+          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+        fi
+      fi
     ;;
     3)
       SSSEL=$(whiptail \
