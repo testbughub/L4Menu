@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
-RETROPIE=$(cat ./CHANGEME/PATHS.txt | head -n2 | tail -n1)
+RETROPIE=$(cat /usr/share/L4Menu/PATHS.txt | head -n2 | tail -n1)
 PATHSSET=$(cat /usr/share/L4Menu/.paths)
 MOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
 
@@ -12,7 +12,7 @@ function L4Menu() {
   "1" "Show IP" \
   "2" "Mount options" \
   "3" "Save Sync" \
-  "4" "VPN > burken" \
+  "4" "VPN > server" \
   "5" "Skyscraper Sync" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
@@ -92,51 +92,57 @@ function L4Menu() {
       esac
     ;;
     4)
-      if pgrep -x openvpn > /dev/null
+      if [ -f /home/pi/VPN.ovpn ] ;
       then
-        OVSEL=$(whiptail \
-        --title "VPN > burken" \
-        --menu "OpenVPN is already running. Choose what to do." 11 40 2 \
-        "1" "Disconnect" \
-        "2" "Reconnect" 3>&1 1>&2 2>&3)
-        case $OVSEL in
-          1)
-            sudo pkill openvpn
-            sleep 2
-            LOCIP=$(hostname -I)
-            whiptail --title "VPN > burken" --msgbox "Your current local IP is: $LOCIP" 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          ;;
-          2)
-            sudo pkill openvpn
-            sudo nohup openvpn /home/pi/lamarca.ovpn > /dev/null &
-            whiptail --title "VPN > burken" --msgbox "Please wait..." 10 40 2
-            sleep 5
-            LOCIP=$(hostname -I)
-            if whiptail --title "VPN > burken" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
-            then
-              whiptail --title "VPN > burken" --msgbox "Your current local IP is: $LOCIP" 10 40 2
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-            else
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-            fi
-          ;;
-          *)
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-          ;;
-        esac
-      else
-        sudo nohup openvpn /home/pi/lamarca.ovpn > /dev/null &
-       # whiptail --title "VPN > burken" --msgbox "Please wait..." 10 40 2
-        sleep 5
-        LOCIP=$(hostname -I)
-        if whiptail --title "VPN > burken" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
+        if pgrep -x openvpn > /dev/null
         then
-          whiptail --title "VPN > burken" --msgbox "Your current local IP is: $LOCIP" 10 40 2
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          OVSEL=$(whiptail \
+          --title "VPN > server" \
+          --menu "VPN is already running. Choose what to do." 11 40 2 \
+          "1" "Disconnect" \
+          "2" "Reconnect" 3>&1 1>&2 2>&3)
+          case $OVSEL in
+            1)
+              sudo pkill openvpn
+              sleep 2
+              LOCIP=$(hostname -I)
+              whiptail --title "VPN > server" --msgbox "Your current local IP is: $LOCIP" 10 40 2
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            ;;
+            2)
+              sudo pkill openvpn
+              sudo nohup openvpn /home/pi/VPN.ovpn > /dev/null &
+              # whiptail --title "VPN > server" --msgbox "Please wait..." 10 40 2
+              sleep 5
+              LOCIP=$(hostname -I)
+              if whiptail --title "VPN > server" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
+              then
+                whiptail --title "VPN > server" --msgbox "Your current local IP is: $LOCIP" 10 40 2
+                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+              else
+                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+              fi
+            ;;
+            *)
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            ;;
+          esac
         else
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          sudo nohup openvpn /home/pi/VPN.ovpn > /dev/null &
+         # whiptail --title "VPN > burken" --msgbox "Please wait..." 10 40 2
+          sleep 5
+          LOCIP=$(hostname -I)
+          if whiptail --title "VPN > server" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
+          then
+            whiptail --title "VPN > server" --msgbox "Your current local IP is: $LOCIP" 10 40 2
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          else
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          fi
         fi
+      else
+        whiptail --title "VPN > server" --msgbox "Couldn't find required VPN file.\nLook in README for more info." 10 40 2
+        sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       fi
     ;;
     5)

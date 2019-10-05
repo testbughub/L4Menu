@@ -6,5 +6,8 @@ L4 Menu for RetroPie
 Run install.sh as root.
 Done!
 
+# VPN
+Place your .ovpn file in /home/pi/ and rename it to "VPN.ovpn"
+
 # Uninstall
 Run uninstall.sh as root.
