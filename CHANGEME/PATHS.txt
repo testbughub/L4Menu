@@ -1,0 +1,4 @@
+# RetroPie
+/home/pi/RetroPie
+# Mount Point
+/mnt

@@ -1,0 +1,6 @@
+# Username
+lamarca
+# Password
+fiskpinnar
+# SSH ID
+/home/$USERNAME/.ssh/id_rsa
