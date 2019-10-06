@@ -10,6 +10,7 @@ then
   sudo cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
   cp ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/
   sudo mkdir /usr/share/L4Menu
+  sudo cp ./CHANGEME/PATHS.txt /usr/share/L4Menu/
   sudo cp ./CHANGEME/SERVER.txt /usr/share/L4Menu/
   sudo cp ./.paths /usr/share/L4Menu/
   echo $UNAME > /home/pi/.smbcredentials
