@@ -32,8 +32,7 @@ function L4Menu() {
       "3" "Dismount server" 3>&1 1>&2 2>&3)
       case $MOSEL in
         1)
-          whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3
-          ANSWER=$?
+          ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
           cat /usr/share/L4Menu/SERVER.txt | head -n3 > /usr/share/L4Menu/SERVER.txt
           echo $ANSWER >> /usr/share/L4Menu/SERVER.txt
           whiptail --title "Mount" --msgbox "$ANSWER is no the default mountpoint" 10 40 2
