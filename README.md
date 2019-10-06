@@ -10,7 +10,7 @@ Done!
 For syncing to work, you need to share certain paths with samba on your server.  
 Edit your /etc/samba/smb.conf and add the following lines and restart the samba service;
 
-### ROMS
+#### ROMS
 ```
 [roms]
    path = /path/to/your/roms
