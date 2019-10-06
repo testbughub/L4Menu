@@ -10,8 +10,7 @@ then
   sudo cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
   sudo mkdir /usr/share/L4Menu
   sudo cp ./CHANGEME/SERVER.txt /usr/share/L4Menu/
-  sudo touch /usr/share/L4Menu/pathsset
-  sudo echo 0 > /usr/share/L4Menu/pathsset
+  sudo cp ./.paths /usr/share/L4Menu/
   echo $UNAME > /home/pi/.smbcredentials
   echo $PASS >> /home/pi/.smbcredentials
   whiptail --title "Install" --msgbox "Install complete!" 10 40 2
@@ -19,11 +18,5 @@ else
   whiptail --title "Install" --msgbox "Cancelled." 10 40 2
   exit 1
 fi
-
-
-
-
-
-# echo $SERVERIP $SERVERPORT $USERNAME $PASSWORD $SSHID
 
 exit 0
