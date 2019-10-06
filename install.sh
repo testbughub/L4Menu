@@ -16,7 +16,7 @@ then
   echo $UNAME > /home/pi/.smbcredentials
   echo $PASS >> /home/pi/.smbcredentials
   chmod 600 /home/pi/.smbcredentials
-  whiptail --title "Install" --msgbox "Install complete!" 10 40 2
+  whiptail --title "Install" --msgbox "Install complete!\nRestart ES to update the menu." 10 40 2
 else
   whiptail --title "Install" --msgbox "Cancelled." 10 40 2
   exit 1
