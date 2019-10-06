@@ -34,7 +34,7 @@ function L4Menu() {
         1)
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
           if [[ $ANSWER -lt 1 ]]; then
-            whiptail --title "Mount" --msgbox "Invalid mountpoint."
+            whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
             cat /usr/share/L4Menu/SERVER.txt | head -n3 > /usr/share/L4Menu/SERVER.txt
