@@ -3,7 +3,7 @@
 L4 Menu for RetroPie
 
 ## Install
-Run install.sh as root.
+Run install.sh
 Done!
 
 ## Server Samba
@@ -30,4 +30,5 @@ Edit your /ets/samba/smb.conf and add the following lines and restart the samba 
 Place your .ovpn file in /home/pi/ and rename it to "VPN.ovpn"
 
 ## Uninstall
-Run uninstall.sh as root.
+Run uninstall.sh
+Done!
