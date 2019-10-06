@@ -8,7 +8,7 @@ then
   sudo cp ./L4Menu.sh /home/pi/RetroPie/retropiemenu/
   sudo cp /home/pi/.emulationstation/gamelists/retropie/gamelist.xml /home/pi/.emulationstation/gamelists/retropie/gamelist.xml.bak
   sudo cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
-  sudo cp ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/
+  cp ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/
   sudo mkdir /usr/share/L4Menu
   sudo cp ./CHANGEME/SERVER.txt /usr/share/L4Menu/
   sudo cp ./.paths /usr/share/L4Menu/
