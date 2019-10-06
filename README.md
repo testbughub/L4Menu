@@ -1,13 +1,13 @@
-# Very WIP
+# Very very WIP
 
 L4 Menu for RetroPie
 
 ## Install
-Run install.sh
+Either plug in a keyboard and press F4, or SSH into your device and run install.sh  
 Done!
 
 ## Server Samba
-For syncing to work, you need to share certain paths with samba on your server.
+For syncing to work, you need to share certain paths with samba on your server.  
 Edit your /ets/samba/smb.conf and add the following lines and restart the samba service;
 
 ### ROMS
@@ -30,5 +30,5 @@ Edit your /ets/samba/smb.conf and add the following lines and restart the samba 
 Place your .ovpn file in /home/pi/ and rename it to "VPN.ovpn"
 
 ## Uninstall
-Run uninstall.sh
+Either plug in a keyboard and press F4, or SSH into your device and run uninstall.sh  
 Done!
