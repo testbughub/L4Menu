@@ -149,30 +149,23 @@ function L4Menu() {
       SKSEL=$(whiptail \
       --title "Skyscraper" \
       --menu "Select option" 13 40 5 \
-      "1" "gretro > burken" \
-      "2" "burken > gretro" 3>&1 1>&2 2>&3)
+      "1" "RetroPie > server" \
+      "2" "server > RetroPie" 3>&1 1>&2 2>&3)
       case $SKSEL in
         1)
-          if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from gretro to burken. Do you want to continue?" 10 40 4 ;
+          if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from RetroPie to the server.\nDo you want to continue?" 10 40 4 ;
           then
-            sudo cp /etc/fstab.bur /etc/fstab
-            if sudo mount -a ;
+            if sudo mount -t cifs //$SERVERIP/.skyscraper $MOUNTPATH ;
             then
-              sudo rsync -tvurP /home/pi/.skyscraper/* /mnt/skyscraper/
-              sudo umount /mnt/burken /mnt/skyscraper
-              sudo cp /etc/fstab.hdd /etc/fstab
-              if sudo mount -a ;
-              then
-                rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/hdd4ROMS/
-                sudo umount /mnt/hdd4ROMS
-                whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
-                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-              else
-                whiptail --title "Failed" --msgbox "Unable to mount hdd4ROMS" 8 45
-                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-              fi
+              sudo rsync -tvurP /home/pi/.skyscraper/* /mnt/.skyscraper/
+              rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/roms/
+              sudo umount /mnt
+              whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+              whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
-              whiptail --title "Failed" --msgbox "Unable to mount burken" 8 45
+              whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
@@ -180,21 +173,17 @@ function L4Menu() {
           fi
         ;;
         2)
-          if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from burken to gretro. Do you want to continue?" 10 40 4 ;
+          if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from the server to RetroPie.\nDo you want to continue?" 10 40 4 ;
           then
-            sudo cp /etc/fstab.bur /etc/fstab
-            if sudo mount -a ;
+            if sudo mount -t cifs //$SERVERIP/.skyscraper $MOUNTPATH ;
             then
               sudo rsync -tvurP /mnt/skyscraper/* /home/pi/.skyscraper/
-              sudo umount /mnt/burken /mnt/skyscraper
-              sudo cp /etc/fstab.hdd /etc/fstab
-              sudo mount -a
-              rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /mnt/hdd4ROMS/* /home/pi/RetroPie/roms/
+              rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /mnt/roms/* /home/pi/RetroPie/roms/
               whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
-              sudo umount /mnt/hdd4ROMS
+              sudo umount /mnt
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
-              whiptail --title "Failed" --msgbox "Unable to mount burken" 8 45
+              whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
