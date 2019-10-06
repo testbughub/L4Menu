@@ -33,10 +33,15 @@ function L4Menu() {
       case $MOSEL in
         1)
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
-          cat /usr/share/L4Menu/SERVER.txt | head -n3 > /usr/share/L4Menu/SERVER.txt
-          echo $ANSWER >> /usr/share/L4Menu/SERVER.txt
-          whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          if [[ $ANSWER -lt 1 ]]; then
+            whiptail --title "Mount" --msgbox "Invalid mountpoint."
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          else
+            cat /usr/share/L4Menu/SERVER.txt | head -n3 > /usr/share/L4Menu/SERVER.txt
+            echo $ANSWER >> /usr/share/L4Menu/SERVER.txt
+            whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          fi
         ;;
         2)
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
