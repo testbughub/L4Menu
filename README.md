@@ -10,7 +10,7 @@ Done!
 For syncing to work, you need to share certain paths with samba on your server.
 Edit your /ets/samba/smb.conf and add the following lines and restart the samba service;
 
-### ROMS folder
+### ROMS
 ```
 [roms]
    path = /path/to/your/roms
@@ -18,7 +18,7 @@ Edit your /ets/samba/smb.conf and add the following lines and restart the samba 
    read only = no
 ```
 
-#### Skyscraper folder
+#### Skyscraper
 ```
 [skyscraper]
     path = /path/to/.skyscraper
