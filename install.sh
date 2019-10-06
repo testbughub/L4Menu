@@ -13,7 +13,7 @@ then
   sudo echo 0 > /usr/share/L4Menu/.paths
   echo $UNAME > /home/pi/.smbcredentials
   echo $PASS >> /home/pi/.smbcredentials
-  whiptail --title "Install" --msgbox "Install complete!"
+  whiptail --title "Install" --msgbox "Install complete!" 10 40 2
 else
   whiptail --title "Install" --msgbox "Cancelled." 10 40 2
   exit 1
