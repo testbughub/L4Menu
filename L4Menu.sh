@@ -38,7 +38,7 @@ function L4Menu() {
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
             cat /usr/share/L4Menu/PATHS.txt | head -n3 > /usr/share/L4Menu/PATHS.txt
-            echo $ANSWER >> /usr/share/L4Menu/SERVER.txt
+            echo $ANSWER >> /usr/share/L4Menu/PATHS.txt
             whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
