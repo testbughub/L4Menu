@@ -14,6 +14,7 @@ then
   sudo cp ./.paths /usr/share/L4Menu/
   echo $UNAME > /home/pi/.smbcredentials
   echo $PASS >> /home/pi/.smbcredentials
+  chmod 600 /home/pi/.smbcredentials
   whiptail --title "Install" --msgbox "Install complete!" 10 40 2
 else
   whiptail --title "Install" --msgbox "Cancelled." 10 40 2
