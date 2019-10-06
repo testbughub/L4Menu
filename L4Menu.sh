@@ -45,13 +45,18 @@ function L4Menu() {
         ;;
         2)
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
-          if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials //$SERVERIP/ $ANSWER ;
-          then
-            whiptail --title "Mount" --msgbox "Successfully mounted the server on $ANSWER" 10 40 2
+          if [[ $ANSWER -lt 1 ]]; then
+            whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
-            whiptail --title "Mount" --msgbox "Unable to mount the server on $ANSWER" 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials //$SERVERIP/ $ANSWER ;
+            then
+              whiptail --title "Mount" --msgbox "Successfully mounted the server on $ANSWER" 10 40 2
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            else
+              whiptail --title "Mount" --msgbox "Unable to mount the server on $ANSWER" 10 40 2
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            fi
           fi
         ;;
         3)
