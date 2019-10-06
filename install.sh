@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SERVERIP=$(cat ./CHANGEME/SERVER.txt | head -n1)
-SERVERPORT=$(cat ./CHANGEME/SERVER.txt | tail -n1)
 UNAME=$(cat ./CHANGEME/AUTH.txt | head -n2 | tail -n1)
 PASS=$(cat ./CHANGEME/AUTH.txt | head -n4 | tail -n1)
 
