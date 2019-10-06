@@ -35,7 +35,7 @@ function L4Menu() {
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
           cat /usr/share/L4Menu/SERVER.txt | head -n3 > /usr/share/L4Menu/SERVER.txt
           echo $ANSWER >> /usr/share/L4Menu/SERVER.txt
-          whiptail --title "Mount" --msgbox "$ANSWER is no the default mountpoint" 10 40 2
+          whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
           sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
         ;;
         2)
