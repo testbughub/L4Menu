@@ -40,6 +40,7 @@ function L4Menu() {
             cat /usr/share/L4Menu/PATHS.txt | head -n3 > /usr/share/L4Menu/.PATHS.txt
             echo $ANSWER >> /usr/share/L4Menu/.PATHS.txt
             sudo mv /usr/share/L4Menu/.PATHS.txt /usr/share/L4Menu/PATHS.txt
+            sudo echo 1 > /usr/share/L4Menu/.paths
             whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
@@ -63,7 +64,7 @@ function L4Menu() {
         3)
           if whiptail --title "Dismount" --yesno "Do you want to dismount the server?" 10 40 2 ;
           then
-            sudo umount /mnt
+            sudo umount /mnt $MOUNTPATH
             whiptail --title "Dismount" --msgbox "Successfully dismounted the server." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
