@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
+UNAME=$(cat /home/pi/.smbcredentials | head -n1)
 RETROPIE=$(cat /usr/share/L4Menu/PATHS.txt | head -n2 | tail -n1)
 PATHSSET=$(cat /usr/share/L4Menu/.paths)
 MOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
@@ -23,26 +24,42 @@ function L4Menu() {
       sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
     ;;
     2)
-      MOUNTPOINT=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
-      ANSWER=$?
-      if [ $ANSWER = '/mnt' ]; then
-        if sudo mount -t cifs -o user=$USERNAME //$SERVERIP/roms /mnt ;
-        then
-          whiptail --title "Mount" --msgbox "Successfully mounted server on '/mnt'."
-        else
-          whiptail --title "Mount" --msgbox "Unable to mount server."
+      MOSEL=$(whiptail \
+      --title "Mount" \
+      --menu "Select option" 13 40 5 \
+      "1" "Set default mount path" \
+      "2" "Temporary mount point" \
+      "3" "Dismount server" 3>&1 1>&2 2>&3)
+      case $MOSEL in
+        1)
+          whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3
+          ANSWER=$?
+          cat /usr/share/L4Menu/SERVER.txt | head -n3 > /usr/share/L4Menu/SERVER.txt
+          echo $ANSWER >> /usr/share/L4Menu/SERVER.txt
+          whiptail --title "Mount" --msgbox "$ANSWER is no the default mountpoint" 10 40 2
           sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-        fi
-      else
-        if sudo mount -t cifs -o user=$USERNAME //$SERVERIP/roms $ANSWER ;
-        then
-          whiptail --title "Mount" --msgbox "Successfully mounted server on '$ANSWER'."
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-        else
-          whiptail --title "Mount" --msgbox "Unable to mount server on '$ANSWER'."
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-        fi
-      fi
+        ;;
+        2)
+          ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
+          if sudo mount -t cifs -o $UNAME //$SERVERIP/ $ANSWER ;
+          then
+            whiptail --title "Mount" --msgbox "Successfully mounted the server on $ANSWER" 10 40 2
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          else
+            whiptail --title "Mount" --msgbox "Unable to mount the server on $ANSWER" 10 40 2
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          fi
+        ;;
+        3)
+          if whiptail --title "Dismount" --yesno "Do you want to dismount the server?" 10 40 2 ;
+          then
+            sudo umount /mnt
+            whiptail --title "Dismount" --msgbox "Successfully dismounted the server." 10 40 2
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          else
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          fi
+        esac
     ;;
     3)
       SSSEL=$(whiptail \
