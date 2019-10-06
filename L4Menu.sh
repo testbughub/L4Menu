@@ -37,8 +37,9 @@ function L4Menu() {
             whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
-            cat /usr/share/L4Menu/PATHS.txt | head -n3 > /usr/share/L4Menu/PATHS.txt
-            echo $ANSWER >> /usr/share/L4Menu/PATHS.txt
+            cat /usr/share/L4Menu/PATHS.txt | head -n3 > /usr/share/L4Menu/.PATHS.txt
+            echo $ANSWER >> /usr/share/L4Menu/.PATHS.txt
+            sudo mv /usr/share/L4Menu/.PATHS.txt /usr/share/L4Menu/PATHS.txt
             whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
