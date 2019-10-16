@@ -13,8 +13,8 @@ then
   sudo cp ./CHANGEME/PATHS.txt /usr/share/L4Menu/
   sudo cp ./CHANGEME/SERVER.txt /usr/share/L4Menu/
   sudo cp ./.paths /usr/share/L4Menu/
-  echo $UNAME > /home/pi/.smbcredentials
-  echo $PASS >> /home/pi/.smbcredentials
+  echo "username=$UNAME" > /home/pi/.smbcredentials
+  echo "password=$PASS" >> /home/pi/.smbcredentials
   chmod 600 /home/pi/.smbcredentials
   whiptail --title "Install" --msgbox "Install complete!\nRestart ES to update the menu." 10 40 2
 else
