@@ -6,7 +6,7 @@ PASS=$(cat /home/pi/.smbcredentials | tail -n1)
 RETROPIE=$(cat /usr/share/L4Menu/PATHS.txt | head -n2 | tail -n1)
 PATHSSET=$(cat /usr/share/L4Menu/.paths)
 RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
-SMOUNTPATH=$(cat /usr/share/L4/PATHS.txt | tail -n3 | head -n1)
+SMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n3 | head -n1)
 
 function L4Menu() {
   MMSEL=$(whiptail \
