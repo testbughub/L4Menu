@@ -1,4 +1,6 @@
 # RetroPie
 /home/pi/RetroPie
-# Mount Point
-/mnt
+# Skyscraper Mount Point
+/mnt/skyscraper
+# ROMs Mount Point
+/mnt/roms

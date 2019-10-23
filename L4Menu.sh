@@ -5,7 +5,8 @@ UNAME=$(cat /home/pi/.smbcredentials | head -n1)
 PASS=$(cat /home/pi/.smbcredentials | tail -n1)
 RETROPIE=$(cat /usr/share/L4Menu/PATHS.txt | head -n2 | tail -n1)
 PATHSSET=$(cat /usr/share/L4Menu/.paths)
-MOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
+RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
+SMOUNTPATH=$(cat /usr/share/L4/PATHS.txt | tail -n3 | head -n1)
 
 function L4Menu() {
   MMSEL=$(whiptail \
@@ -83,10 +84,10 @@ function L4Menu() {
         1)
           if whiptail --title "Save Sync" --yesno "This will sync save states from RetroPie to the server. Do you want to continue?" 10 40 2 ;
           then
-            if sudo mount -t cifs -o user=$UNAME,pass=$PASS,uid=1000,iocharset=utf8 //$SERVERIP/roms $MOUNTPATH ;
+            if sudo mount -t cifs -o user=$UNAME,pass=$PASS,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
             then
               sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/roms/
-              sudo umount $MOUNTPATH
+              sudo umount $RMOUNTPATH
               whiptail --title "Save Sync" --msgbox "Successfully synced with burken." 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
@@ -183,11 +184,11 @@ function L4Menu() {
         1)
           if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from RetroPie to the server.\nDo you want to continue?" 10 40 4 ;
           then
-            if sudo mount -t cifs -o user=$UNAME,pass=$PASS,uid=1000,iocharset=utf8 //$SERVERIP/.skyscraper $MOUNTPATH ;
+            if sudo mount -t cifs -o user=$UNAME,pass=$PASS,uid=1000,iocharset=utf8 //$SERVERIP/.skyscraper $SMOUNTPATH ;
             then
               sudo rsync -tvurP /home/pi/.skyscraper/* /mnt/.skyscraper/
               rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/roms/
-              sudo umount $MOUNTPATH
+              sudo umount $SMOUNTPATH
               whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
