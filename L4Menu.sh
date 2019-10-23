@@ -101,11 +101,10 @@ function L4Menu() {
         2)
           if whiptail --title "Save Sync" --yesno "This will sync save states from the server to RetroPie. Do you want to continue?" 10 40 2 ;
           then
-            sudo mount -t cifs -o user=$UNAME,pass=$PASS,uid=1000,iocharset=utf8 //$SERVERIP/roms $MOUNTPATH
-            if sudo mount -a ;
+            if sudo mount -t cifs -o user=$UNAME,pass=$PASS,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
             then
               sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/roms/* /home/pi/RetroPie/roms/
-              sudo umount $MOUNTPATH
+              sudo umount $RMOUNTPATH
               whiptail --title "Save Sync" --msgbox "Successfully synced with the server." 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
