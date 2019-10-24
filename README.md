@@ -35,3 +35,8 @@ Place your .ovpn file in /home/pi/ and rename it to "VPN.ovpn"
 ## Uninstall
 Either plug in a keyboard and press F4, or SSH into your device and run uninstall.sh  
 Done!
+
+### To-do
+* Fix skyscraper sync once and for all.  
+* Add custom selections for mount points.  
+* ???  
