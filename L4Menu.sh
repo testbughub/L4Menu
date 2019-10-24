@@ -39,7 +39,7 @@ function L4Menu() {
             whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
-            cat /usr/share/L4Menu/PATHS.txt | head -n3 > /usr/share/L4Menu/.PATHS.txt
+            cat /usr/share/L4Menu/PATHS.txt | head -n5 > /usr/share/L4Menu/.PATHS.txt
             echo $ANSWER >> /usr/share/L4Menu/.PATHS.txt
             sudo mv /usr/share/L4Menu/.PATHS.txt /usr/share/L4Menu/PATHS.txt
             sudo echo 1 > /usr/share/L4Menu/.paths
@@ -53,7 +53,7 @@ function L4Menu() {
             whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
-            if sudo mount -t cifs -o $UNAME,$SPASS,uid=1000,iocharset=utf8 //$SERVERIP/ $ANSWER ;
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/ $ANSWER ;
             then
               whiptail --title "Mount" --msgbox "Successfully mounted the server on $ANSWER" 10 40 2
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
@@ -66,7 +66,7 @@ function L4Menu() {
         3)
           if whiptail --title "Dismount" --yesno "Do you want to dismount the server?" 10 40 2 ;
           then
-            sudo umount $RMOUNTPATH $SMOUNTPATH $ANSWER
+            sudo umount $RMOUNTPATH $SMOUNTPATH
             whiptail --title "Dismount" --msgbox "Successfully dismounted the server." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
@@ -183,7 +183,7 @@ function L4Menu() {
         1)
           if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from RetroPie to the server.\nDo you want to continue?" 10 40 4 ;
           then
-            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/.skyscraper $SMOUNTPATH ;
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/skyscraper $SMOUNTPATH ;
             then
               sudo rsync -tvurP /home/pi/.skyscraper/* /mnt/.skyscraper/
               rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/roms/

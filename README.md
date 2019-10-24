@@ -24,7 +24,7 @@ Edit your /etc/samba/smb.conf and add the following lines and restart the samba 
 #### Skyscraper
 ```
 [skyscraper]
-    path = /path/to/.skyscraper
+    path = /opt/retropie/configs/all/skyscraper
     browseable = yes
     read only = no
 ```
