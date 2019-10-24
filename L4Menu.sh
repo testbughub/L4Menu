@@ -15,7 +15,7 @@ function L4Menu() {
   "1" "Show IP" \
   "2" "Mount options" \
   "3" "Save Sync" \
-  "4" "VPN > server" \
+  "4" "VPN > Server" \
   "5" "Skyscraper Sync" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
@@ -177,8 +177,8 @@ function L4Menu() {
       SKSEL=$(whiptail \
       --title "Skyscraper" \
       --menu "Select option" 13 40 5 \
-      "1" "RetroPie > server" \
-      "2" "server > RetroPie" 3>&1 1>&2 2>&3)
+      "1" "RetroPie > Server" \
+      "2" "Server > RetroPie" 3>&1 1>&2 2>&3)
       case $SKSEL in
         1)
           if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from RetroPie to the server.\nDo you want to continue?" 10 40 4 ;
