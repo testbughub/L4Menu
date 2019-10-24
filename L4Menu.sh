@@ -185,7 +185,7 @@ function L4Menu() {
           then
             if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/skyscraper $SMOUNTPATH ;
             then
-              sudo rsync -tvurP /home/pi/.skyscraper/* /mnt/.skyscraper/
+              sudo rsync -tvurP /home/pi/.skyscraper/* /mnt/skyscraper/
               rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/roms/
               sudo umount $SMOUNTPATH
               whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
@@ -201,7 +201,7 @@ function L4Menu() {
         2)
           if whiptail --title "Skyscraper" --yesno "This will sync Skyscraper from the server to RetroPie.\nDo you want to continue?" 10 40 4 ;
           then
-            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8,iocharset=utf8 //$SERVERIP/.skyscraper $SMOUNTPATH ;
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8,iocharset=utf8 //$SERVERIP/skyscraper $SMOUNTPATH ;
             then
               sudo rsync -tvurP /mnt/skyscraper/* /home/pi/.skyscraper/
               rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /mnt/roms/* /home/pi/RetroPie/roms/
