@@ -16,7 +16,8 @@ function L4Menu() {
   "2" "Mount options" \
   "3" "Save Sync" \
   "4" "VPN > Server" \
-  "5" "Skyscraper Sync" 3>&1 1>&2 2>&3)
+  "5" "Skyscraper Sync" \
+  "6" "ROM Sync" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
       IPL=$(hostname -I)
@@ -84,7 +85,7 @@ function L4Menu() {
         1)
           if whiptail --title "Save Sync" --yesno "This will sync save states from RetroPie to the server. Do you want to continue?" 10 40 2 ;
           then
-            if sudo mount -t cifs -o $UNAME,$SPASS,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
             then
               sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/roms/
               sudo umount $RMOUNTPATH
@@ -219,6 +220,48 @@ function L4Menu() {
         *)
           sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       esac
+    ;;
+    6)
+      RSSEL=$(whiptail \
+      --title "ROM Sync" \
+      --menu "Select option" 13 40 5 \
+      "1" "RetroPie > Server" \
+      "2" "Server > RetroPie" 3>&1 1>&2 2>&3)
+      case $RSSEL in
+        1)
+          if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server. Do you want to continue?" 10 40 2 ;
+          then
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
+            then
+              sudo rsync -tvurP --exclude={'*.state*','*.srm'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/roms/
+              sudo umount $RMOUNTPATH
+              whiptail --title "ROM Sync" --msgbox "Successfully synced with burken." 8 45
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            else
+              whiptail --title "Failed" --msgbox "Unable to mount server" 8 45
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            fi
+          else
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          fi
+        ;;
+        2)
+          if whiptail --title "ROM Sync" --yesno "This will sync ROM's from the server to RetroPie. Do you want to continue?" 10 40 2 ;
+          then
+            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
+            then
+              sudo rsync -tvurP --exclude={'*.state*','*.srm'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/roms/* /home/pi/RetroPie/roms/
+              sudo umount $RMOUNTPATH
+              whiptail --title "ROM Sync" --msgbox "Successfully synced with burken." 8 45
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            else
+              whiptail --title "Failed" --msgbox "Unable to mount server" 8 45
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+            fi
+          else
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+          fi
+        ;;
     ;;
   esac
 }
