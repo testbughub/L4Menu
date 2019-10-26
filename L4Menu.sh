@@ -1,10 +1,8 @@
 #!/bin/bash
 
-SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
 SUNAME=$(cat /home/pi/.smbcredentials | head -n1 | cut -c10-32)
 SPASS=$(cat /home/pi/.smbcredentials | tail -n1 | cut -c10-32)
 RETROPIE=$(cat /usr/share/L4Menu/PATHS.txt | head -n2 | tail -n1)
-PATHSSET=$(cat /usr/share/L4Menu/.paths)
 RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
 SMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n3 | head -n1)
 
@@ -260,16 +258,18 @@ function L4Menu() {
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
+      esac
     ;;
     7)
       if wget -O /home/pi/RetroPie/retropiemenu/L4Menu.sh https://github.com/testbughub/L4Menu/blob/master/L4Menu.sh ;
       then
         whiptail --title "Update" --msgbox "Successfully updated L4Menu"
-        bash /home/pi/RetroPie/retropiemenu/L4Menu.#!/bin/sh
+        bash /home/pi/RetroPie/retropiemenu/L4Menu.
       else
         whiptail --title "Update" --msgbox "Unable to update L4Menu"
         bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       fi
+    ;;
   esac
 }
 
