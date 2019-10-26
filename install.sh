@@ -30,3 +30,4 @@ then
   whiptail --title "Install" --msgbox "Install complete!\nRestart ES to update the menu." 10 40 2
 else
   exit 1
+fi
