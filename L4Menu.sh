@@ -263,8 +263,8 @@ function L4Menu() {
       cd /home/pi/RetroPie/retropiemenu/
       if wget https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu.sh ;
       then
-        whiptail --title "Update" --msgbox "Successfully updated L4Menu.\nPlease rerun the script." 10 40 2
-        exit 0
+        whiptail --title "Update" --msgbox "Successfully updated L4Menu." 10 40 2
+        bash /home/pi/RetroPue/retropiemenu/L4Menu.sh
       else
         whiptail --title "Update" --msgbox "Unable to update L4Menu" 10 40 2
         bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
