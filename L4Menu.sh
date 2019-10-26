@@ -260,7 +260,8 @@ function L4Menu() {
       esac
     ;;
     7)
-      if wget -O /home/pi/RetroPie/retropiemenu/L4Menu.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu.sh ;
+      cd /home/pi/RetroPie/retropiemenu/
+      if wget https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu.sh ;
       then
         whiptail --title "Update" --msgbox "Successfully updated L4Menu.\nPlease rerun the script." 10 40 2
         exit 0
@@ -268,6 +269,7 @@ function L4Menu() {
         whiptail --title "Update" --msgbox "Unable to update L4Menu" 10 40 2
         bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       fi
+      cd -
     ;;
   esac
 }
