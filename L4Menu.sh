@@ -17,7 +17,8 @@ function L4Menu() {
   "3" "Save Sync" \
   "4" "VPN > Server" \
   "5" "Skyscraper Sync" \
-  "6" "ROM Sync" 3>&1 1>&2 2>&3)
+  "6" "ROM Sync" \
+  "7" "Update L4Menu" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
       IPL=$(hostname -I)
@@ -67,7 +68,7 @@ function L4Menu() {
         3)
           if whiptail --title "Dismount" --yesno "Do you want to dismount the server?" 10 40 2 ;
           then
-            sudo umount $RMOUNTPATH $SMOUNTPATH
+            sudo umount $RMOUNTPATH $SMOUNTPATH $ANSWER
             whiptail --title "Dismount" --msgbox "Successfully dismounted the server." 10 40 2
             sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
@@ -141,7 +142,6 @@ function L4Menu() {
             2)
               sudo pkill openvpn
               sudo nohup openvpn /home/pi/VPN.ovpn > /dev/null &
-              # whiptail --title "VPN > server" --msgbox "Please wait..." 10 40 2
               sleep 5
               LOCIP=$(hostname -I)
               if whiptail --title "VPN > server" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
@@ -158,7 +158,6 @@ function L4Menu() {
           esac
         else
           sudo nohup openvpn /home/pi/VPN.ovpn > /dev/null &
-         # whiptail --title "VPN > burken" --msgbox "Please wait..." 10 40 2
           sleep 5
           LOCIP=$(hostname -I)
           if whiptail --title "VPN > server" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
@@ -263,6 +262,15 @@ function L4Menu() {
           fi
         ;;
     ;;
+    7)
+      if wget -O /home/pi/RetroPie/retropiemenu/L4Menu.sh https://github.com/testbughub/L4Menu/blob/master/L4Menu.sh ;
+      then
+        whiptail --title "Update" --msgbox "Successfully updated L4Menu"
+        bash /home/pi/RetroPie/retropiemenu/L4Menu.#!/bin/sh
+      else
+        whiptail --title "Update" --msgbox "Unable to update L4Menu"
+        bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+      fi
   esac
 }
 
