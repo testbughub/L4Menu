@@ -10,9 +10,8 @@ then
   sudo mkdir /usr/share/L4Menu
   sudo cp ./CHANGEME/PATHS.txt /usr/share/L4Menu/
   sudo cp ./CHANGEME/SERVER.txt /usr/share/L4Menu/
-  sudo cp ./.paths /usr/share/L4Menu/
-  UNAME=$(whiptail --title "SAMBA" --inputbox "What is your username for Samba?")
-  PWORD=$(whiptail --title "SAMBA" --passwordbox "What is your password for Samba?")
+  UNAME=$(whiptail --title "SAMBA" --inputbox "What is your username for Samba?" 10 40)
+  PWORD=$(whiptail --title "SAMBA" --passwordbox "What is your password for Samba?" 10 40)
   echo 'username=$UNAME' > /home/pi/.smbcredentials
   echo 'password=$PWORD' >> /home/pi/.smbcredentials
   chmod 600 /home/pi/.smbcredentials
