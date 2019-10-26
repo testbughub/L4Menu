@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+if [[ $EUID -ne 0 ]]; then
+  echo "Run as root."
+  exit 1
+fi
 if whiptail --title "Install" --yesno "This will install L4Menu on your device.\nContinue?" 10 40 2 ;
 then
   SAMIP=$(whiptail --title "SAMBA" --inputbox "What is the server IP?" 10 40 3>&1 1>&2 2>&3)

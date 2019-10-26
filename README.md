@@ -3,7 +3,7 @@
 L4 Menu for RetroPie
 
 ## Install
-Either plug in a keyboard and press F4, or SSH into your device and change ./CHANGEME/AUTH.txt and ./CHANGEME/SERVER.txt, then run install.sh  
+Either plug in a keyboard and press F4, or SSH into your device and then run install.sh as root.  
 Done!
 
 ## Running
@@ -36,8 +36,8 @@ Place your .ovpn file in /home/pi/ and rename it to "VPN.ovpn"
 Either plug in a keyboard and press F4, or SSH into your device and run uninstall.sh  
 Done!
 
-### To-do 
+### To-do
 * ~~Add ROM sync~~  
 * Add custom selections for mount points.  
-* Add script update option
+* ~~Add script update option~~
 * ???  
