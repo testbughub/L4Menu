@@ -2,9 +2,8 @@
 
 SUNAME=$(cat /home/pi/.smbcredentials | head -n1 | cut -c10-32)
 SPASS=$(cat /home/pi/.smbcredentials | tail -n1 | cut -c10-32)
-RETROPIE=$(cat /usr/share/L4Menu/PATHS.txt | head -n2 | tail -n1)
-RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n1)
-SMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n3 | head -n1)
+RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
+# SMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt | tail -n3 | head -n1)
 
 function L4Menu() {
   MMSEL=$(whiptail \
