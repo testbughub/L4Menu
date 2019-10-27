@@ -50,8 +50,12 @@ Done!
 * ~~ROM sync~~
 * Custom selections for mount points
 * ~~Script update option~~
-* VPN options
+* More VPN options
 * Make separate sections for every options
 * Different name?
 * Custom exclusions
 * ???  
+
+## Known issues
+* Need to press B to select an option when using an GPi.  
+* ?? 
