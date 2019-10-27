@@ -55,3 +55,7 @@ Done!
 * Different name?
 * Custom exclusions
 * ???  
+
+## Known issues
+* Need to press B to select an option when using an GPi.  
+* ?? 
