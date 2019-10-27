@@ -9,7 +9,7 @@ I'm going to be honest and say that I'm in no way a professional programmer.
 I just made this for fun and to learn.  
 Any improvements or suggestions is always welcome.
 
-PS
+PS  
 There's a lot of emulators it doesn't cover. If any you feel should be added, let me know.
 
 ## Install
