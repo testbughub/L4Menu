@@ -10,7 +10,7 @@ then
   SAMIP=$(whiptail --title "SAMBA" --inputbox "What is the server IP?" 10 40 3>&1 1>&2 2>&3)
   UNAME=$(whiptail --title "SAMBA" --inputbox "What is your username for Samba?" 10 40 3>&1 1>&2 2>&3)
   PWORD=$(whiptail --title "SAMBA" --passwordbox "What is your password for Samba?" 10 40 3>&1 1>&2 2>&3)
-  cp ./L4Menu.sh /home/pi/RetroPie/retropiemenu/
+  cp ./L4Menu /home/pi/RetroPie/retropiemenu/
   cp /home/pi/.emulationstation/gamelists/retropie/gamelist.xml /home/pi/.emulationstation/gamelists/retropie/gamelist.xml.bak
   cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
   cp -p ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/

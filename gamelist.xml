@@ -161,7 +161,7 @@
 		<lastplayed>20190926T142657</lastplayed>
 	</game>
 	<game>
-		<path>./L4Menu.sh</path>
+		<path>./L4Menu</path>
 		<name>L4 Menu</name>
 		<desc>L4 Menu for advanced configuration.</desc>
 		<image>./icons/L4.png</image>
