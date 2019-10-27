@@ -48,4 +48,5 @@ Done!
 * Custom selections for mount points  
 * ~~Script update option~~
 * VPN options
+* Make separate sections for every options
 * ???  
