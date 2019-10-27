@@ -2,6 +2,13 @@
 
 L4 Menu for RetroPie
 
+## Description
+This is a collection of scripts for RetroPie to sync ROM's and  
+skyscraper content to or from a server.
+I'm going to be hosenst and say that I'm in no way a professional  
+programmer. I just made this for fun and to learn.  
+Any improvements or suggestions is always welcome.
+
 ## Install
 Either plug in a keyboard and press F4, or SSH into your device and then run install.sh as root.  
 Done!
