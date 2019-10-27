@@ -38,7 +38,7 @@ Done!
 
 ### To-do
 * ~~ROM sync~~  
-* Custom selections for mount points.  
+* Custom selections for mount points  
 * ~~Script update option~~
 * VPN options
 * ???  

@@ -224,7 +224,7 @@ function L4Menu() {
       "2" "Server > RetroPie" 3>&1 1>&2 2>&3)
       case $RSSEL in
         1)
-          if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server. Do you want to continue?" 10 40 2 ;
+          if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server.\nThis can take a long time depending on how many ROM's you have.\nDo you want to continue?" 10 40 2 ;
           then
             if mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
             then
