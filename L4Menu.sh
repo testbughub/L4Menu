@@ -8,7 +8,7 @@ SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
 function L4Menu() {
   MMSEL=$(whiptail \
   --title "L4 Menu" \
-  --menu "Select option" 13 40 5 \
+  --menu "Select option" 13 40 7 \
   "1" "Show IP" \
   "2" "Mount options" \
   "3" "Save Sync" \
