@@ -245,7 +245,7 @@ function L4Menu() {
           then
             if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
             then
-              sudo rsync -tvurP --exclude={'*.state*','*.srm'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/roms/* /home/pi/RetroPie/roms/
+              sudo rsync -tvurP --exclude={'*.state*','*.srm','/ps2','/psp'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/roms/* /home/pi/RetroPie/roms/
               sudo umount $RMOUNTPATH
               whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 8 45
               sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
