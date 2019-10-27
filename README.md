@@ -49,4 +49,5 @@ Done!
 * ~~Script update option~~
 * VPN options
 * Make separate sections for every options
+* Different name?
 * ???  
