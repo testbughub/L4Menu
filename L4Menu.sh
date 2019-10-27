@@ -226,7 +226,7 @@ function L4Menu() {
         1)
           if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server. Do you want to continue?" 10 40 2 ;
           then
-            if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
+            if mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ;
             then
               sudo rsync -tvurP --exclude={'*.state*','*.srm','/ps2','/psp'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/roms/
               sudo umount $RMOUNTPATH
