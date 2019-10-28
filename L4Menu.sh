@@ -15,14 +15,15 @@ function L4Menu() {
   "4" "VPN > Server" \
   "5" "Skyscraper Sync" \
   "6" "ROM Sync" \
-  "7" "Update L4Menu" 3>&1 1>&2 2>&3)
+  "7" "Update L4Menu" \
+  "8" "Exlusion List" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
       IPL=$(hostname -I)
       IPP=$(wget -qO- http://ipecho.net/plain ; echo)
       whiptail --title "IP's" --msgbox "Local IP's: $IPL \
       Public IP: $IPP" 10 40 2
-      sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+      sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
     ;;
     2)
       MOSEL=$(whiptail \
@@ -36,28 +37,28 @@ function L4Menu() {
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
           if [[ $ANSWER -lt 1 ]]; then
             whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
             cat /usr/share/L4Menu/PATHS.txt | head -n5 > /usr/share/L4Menu/.PATHS.txt
             echo $ANSWER >> /usr/share/L4Menu/.PATHS.txt
             sudo mv /usr/share/L4Menu/.PATHS.txt /usr/share/L4Menu/PATHS.txt
             whiptail --title "Mount" --msgbox "$ANSWER is now the default mountpoint" 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
         2)
           ANSWER=$(whiptail --title "Mount" --inputbox "Where do you want to mount the server?" 10 40 /mnt 3>&1 1>&2 2>&3)
           if [[ $ANSWER -lt 1 ]]; then
             whiptail --title "Mount" --msgbox "Invalid mountpoint." 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
             if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/ $ANSWER ;
             then
               whiptail --title "Mount" --msgbox "Successfully mounted the server on $ANSWER" 10 40 2
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Mount" --msgbox "Unable to mount the server on $ANSWER" 10 40 2
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           fi
         ;;
@@ -66,9 +67,9 @@ function L4Menu() {
           then
             sudo umount $RMOUNTPATH $SMOUNTPATH $ANSWER
             whiptail --title "Dismount" --msgbox "Successfully dismounted the server." 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         esac
     ;;
@@ -87,13 +88,13 @@ function L4Menu() {
               sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /home/pi/RetroPie/roms/* /mnt/roms/
               sudo umount $RMOUNTPATH
               whiptail --title "Save Sync" --msgbox "Successfully synced with the server." 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Failed" --msgbox "Unable to mount server" 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
         2)
@@ -104,17 +105,17 @@ function L4Menu() {
               sudo rsync -tvurP --include={'*.state*','*.srm'} --exclude={'*.nds','ps2/','psp/','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u','*.mp4','*.jpg','*.png','*.jpeg'} /mnt/roms/* /home/pi/RetroPie/roms/
               sudo umount $RMOUNTPATH
               whiptail --title "Save Sync" --msgbox "Successfully synced with the server." 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Failed" --msgbox "Unable to mount the server to '$RMOUNTPATH'" 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
         *)
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       esac
     ;;
     4)
@@ -133,7 +134,7 @@ function L4Menu() {
               sleep 2
               LOCIP=$(hostname -I)
               whiptail --title "VPN > server" --msgbox "Your current local IP is: $LOCIP" 10 40 2
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             ;;
             2)
               sudo pkill openvpn
@@ -143,13 +144,13 @@ function L4Menu() {
               if whiptail --title "VPN > server" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
               then
                 whiptail --title "VPN > server" --msgbox "Your current local IP is: $LOCIP" 10 40 2
-                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
               else
-                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+                sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
               fi
             ;;
             *)
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             ;;
           esac
         else
@@ -159,14 +160,14 @@ function L4Menu() {
           if whiptail --title "VPN > server" --yesno "Your current local IP is: $LOCIP\nRefresh?" 10 40 2 ;
           then
             whiptail --title "VPN > server" --msgbox "Your current local IP is: $LOCIP" 10 40 2
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         fi
       else
         whiptail --title "VPN > server" --msgbox "Couldn't find required VPN file.\nLook in README for more info." 10 40 2
-        sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+        sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       fi
     ;;
     5)
@@ -185,13 +186,13 @@ function L4Menu() {
               rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/roms/
               sudo umount $SMOUNTPATH
               whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
         2)
@@ -203,17 +204,17 @@ function L4Menu() {
               rsync -tvurP --include={'*.mp4','*.png','*.xml'} --exclude={'*.state*','ps2/','psp/','*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.srm','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /mnt/roms/* /home/pi/RetroPie/roms/
               sudo umount $SMOUNTPATH
               whiptail --title "Skyscraper" --msgbox "Sync complete!" 10 40 4
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
         *)
-          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+          sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       esac
     ;;
     6)
@@ -231,13 +232,13 @@ function L4Menu() {
               sudo rsync -tvurP --exclude={'*.state*','*.srm','/ps2','/psp','*.mp4','*.jpg','*.png','*.jpeg'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/* /mnt/roms/
               sudo umount $RMOUNTPATH
               whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
         2)
@@ -248,13 +249,13 @@ function L4Menu() {
               sudo rsync -tvurP --exclude={'*.state*','*.srm','/ps2','/psp','*.mp4','*.jpg','*.png','*.jpeg'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /mnt/roms/* /home/pi/RetroPie/roms/
               sudo umount $RMOUNTPATH
               whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             else
               whiptail --title "Failed" --msgbox "Unable to mount the server" 8 45
-              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+              sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
             fi
           else
-            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu
+            sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
           fi
         ;;
       esac
@@ -267,10 +268,12 @@ function L4Menu() {
         exit 0
       else
         whiptail --title "Update" --msgbox "Unable to update L4Menu" 10 40 2
-        bash /home/pi/RetroPie/retropiemenu/L4Menu
+        bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       fi
       cd -
     ;;
+    8)
+      bash /home/pi/RetroPie/retropiemenu/L4Menu/exclusions.sh
   esac
 }
 

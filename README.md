@@ -53,9 +53,9 @@ Done!
 * VPN options
 * Make separate sections for every options
 * Different name?
-* Custom exclusions
+* Custom exclusions (in the works)
 * ???  
 
-## Known issues
+### Known issues
 * Need to press B to select an option when using an GPi.  
-* ?? 
+* ??

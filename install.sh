@@ -7,15 +7,18 @@ if [[ $EUID -ne 0 ]]; then
 fi
 if whiptail --title "Install" --yesno "This will install L4Menu on your device.\nContinue?" 10 40 2 ;
 then
-  SAMIP=$(whiptail --title "SAMBA" --inputbox "What is the server IP?" 10 40 3>&1 1>&2 2>&3)
-  UNAME=$(whiptail --title "SAMBA" --inputbox "What is your username for Samba?" 10 40 3>&1 1>&2 2>&3)
-  PWORD=$(whiptail --title "SAMBA" --passwordbox "What is your password for Samba?" 10 40 3>&1 1>&2 2>&3)
-  cp ./L4Menu /home/pi/RetroPie/retropiemenu/
+  SAMIP=$(whiptail --title "Samba" --inputbox "What is the server IP?" 10 40 3>&1 1>&2 2>&3)
+  UNAME=$(whiptail --title "Samba" --inputbox "What is your username for Samba?" 10 40 3>&1 1>&2 2>&3)
+  PWORD=$(whiptail --title "Samba" --passwordbox "What is your password for Samba?" 10 40 3>&1 1>&2 2>&3)
+  cp ./L4Menu.sh /home/pi/RetroPie/retropiemenu/
   cp /home/pi/.emulationstation/gamelists/retropie/gamelist.xml /home/pi/.emulationstation/gamelists/retropie/gamelist.xml.bak
   cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
   cp -p ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/
+  mkdir -p /usr/share/L4Menu
+  mkdir /home/pi/RetroPie/retropiemenu/L4Menu
+  cp ./exclusions.sh /home/pi/RetroPie/retropiemenu/L4Menu/
   mkdir /mnt/roms /mnt/skyscraper
-  mkdir /usr/share/L4Menu
+  touch /usr/share/L4Menu/exclusions.txt
   touch /usr/share/L4Menu/PATHS.txt
   echo "/mnt/roms" > /usr/share/L4Menu/PATHS.txt
   touch /usr/share/L4Menu/SERVER.txt
