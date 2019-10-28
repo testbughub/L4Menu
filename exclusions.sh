@@ -22,3 +22,5 @@ function exclusions() {
 }
 
 exclusions
+
+bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
