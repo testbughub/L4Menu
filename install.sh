@@ -14,7 +14,8 @@ then
   cp ./L4Menu.sh /home/pi/RetroPie/retropiemenu/
   cp /home/pi/.emulationstation/gamelists/retropie/gamelist.xml /home/pi/.emulationstation/gamelists/retropie/gamelist.xml.bak
   cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
-  cp -p ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/
+  cp ./L4.png /home/pi/RetroPie/retropiemenu/icons/
+  chown pi:pi /home/pi/RetroPie/retropiemenu/icons/L4.png
   mkdir /usr/share/L4Menu/
   cp -r ./L4Menu/ /usr/share/L4Menu/
   mkdir /mnt/roms /mnt/skyscraper
