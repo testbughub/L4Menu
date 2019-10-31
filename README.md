@@ -53,9 +53,10 @@ Done!
 * VPN options
 * Make separate sections for every options
 * Different name?
-* ~~Custom exclusions~~ (should be working now)
+* ~~Custom exclusions~~
 * ???  
 
 ### Known issues
 * Need to press B to select an option when using an GPi.  
+* Can't use custom exclusions menu on GPi.
 * ??
