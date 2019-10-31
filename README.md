@@ -53,7 +53,7 @@ Done!
 * VPN options
 * Make separate sections for every options
 * Different name?
-* Custom exclusions (in the works)
+* ~~Custom exclusions~~ (should be working now)
 * ???  
 
 ### Known issues
