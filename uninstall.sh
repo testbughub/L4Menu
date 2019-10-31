@@ -1,6 +1,5 @@
 #!/bin/bash
 
-RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
 
 if whiptail --title "Uninstall" --yesno "This will uninstall L4Menu from your device.\nContinue?" 10 40 2 ;
 then
