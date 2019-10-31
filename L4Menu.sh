@@ -231,6 +231,9 @@ function L4Menu() {
       2)
       bash /home/pi/RetroPie/retropiemenu/L4Menu/s2r_romsync.sh
       ;;
+      *)
+      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+      ;;
     esac
     ;;
     7)
