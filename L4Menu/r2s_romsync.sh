@@ -24,24 +24,14 @@ types=(
 # romsync
 
 function romsync() {
-  for type in ${types[@]}; do
-    if grep -q "^$type$" $exclude ; then
-      echo "$type is excluded"
+  if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server.\nContinue?" 10 40 2 ; then
+    if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
+      rsync -tvurP --exclude={'*.state*','*.srm','*.mp4','*.jpg','*.png','*.jpeg'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/$type/ /mnt/roms/$type/
     else
-      if whiptail \
-      --title "ROM Sync" \
-      --msgbox "This will sync ROM's from RetroPie to the server.\nContinue?" 10 40 2 ; then
-        if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
-          rsync -tvurP --exclude={'*.state*','*.srm','*.mp4','*.jpg','*.png','*.jpeg'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/$type/ /mnt/roms/$type/
-        else
-          whiptail --title "ROM Sync" --msgbox "Unable to mount the server" 10 40 2
-          bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-        fi
-      else
-        bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-      fi
+      whiptail --title "ROM Sync" --msgbox "Unable to mount the server" 10 40 2
+      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
     fi
-  done
+  fi
 }
 romsync
 
