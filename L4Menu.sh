@@ -219,7 +219,19 @@ function L4Menu() {
       esac
     ;;
     6)
-      bash /home/pi/RetroPie/retropiemenu/L4Menu/romsync.sh
+    RSSEL=$(whiptail \
+    --title "ROM Sync" \
+    --menu "Select option" 13 40 5 \
+    "1" "RetroPie > Server" \
+    "2" "Server > RetroPie" 3>&1 1>&2 2>&3)
+    case $RSSEL in
+      1)
+      bash /home/pi/RetroPie/retropiemenu/L4Menu/r2s_romsync.sh
+      ;;
+      2)
+      bash /home/pi/RetroPie/retropiemenu/L4Menu/s2r_romsync.sh
+      ;;
+    esac
     ;;
     7)
       cd /home/pi/RetroPie/retropiemenu/
