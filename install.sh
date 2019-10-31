@@ -16,7 +16,6 @@ then
   cp -p ./icons/L4.png /home/pi/RetroPie/retropiemenu/icons/
   cp -r ./L4Menu/ /home/pi/RetroPie/retropiemenu/
   mkdir /usr/share/L4Menu/
-  mkdir /home/pi/RetroPie/retropiemenu/L4Menu
   mkdir /mnt/roms /mnt/skyscraper
   touch /usr/share/L4Menu/exclusions.txt
   touch /usr/share/L4Menu/PATHS.txt

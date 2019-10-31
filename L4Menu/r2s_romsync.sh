@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
+RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
 exclude=/usr/share/L4Menu/exclusions.txt
 include=/usr/share/L4Menu/include.txt
 types=(
