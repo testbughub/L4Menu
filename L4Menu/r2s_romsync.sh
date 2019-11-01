@@ -23,16 +23,34 @@ types=(
 # }
 # romsync
 
-function romsync() {
-  if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server.\nContinue?" 10 40 2 ; then
-    if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
-      rsync -tvurmP --exclude={'*.state*','*.srm','*.mp4','*.jpg','*.png','*.jpeg'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/$type/ /mnt/roms/$type/
-    else
-      whiptail --title "ROM Sync" --msgbox "Unable to mount the server" 10 40 2
-      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-    fi
+# function romsync() {
+#   if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server.\nContinue?" 10 40 2 ; then
+#     if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
+#       rsync -tvurmP --exclude={'*.state*','*.srm','*.mp4','*.jpg','*.png','*.jpeg'} --include={'*.nds','*.cso','*.hi','*.nv','*.000','*.rts','*.grp','*.xml','*.cfg','*.zip','*.wad','*.A52','*.gb','*.rtc','*.GBA','*.gba','*.gbc','*.smd','*.n64','*.z64','*.nes','*.sh','*.iso','*.ISO','*.cue','*.bin','*.BIN','*.m3u'} /home/pi/RetroPie/roms/$type/ /mnt/roms/$type/
+#     else
+#       whiptail --title "ROM Sync" --msgbox "Unable to mount the server" 10 40 2
+#       bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+#     fi
+#   fi
+# }
+# romsync
+#
+# bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+
+if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
+  if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server.\nDepending on how many ROM's you have, this can take a long time.\nContinue?" 10 40 2 ; then
+    function romsync() {
+      for type in ${types[@]}; do
+        if grep -q "^$type$" $exclude ; then
+          echo "$type is excluded"
+        else
+          unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -batch
+        fi
+      done
+    }
+    romsync
   fi
-}
-romsync
+fi
+umount $RMOUNTPATH
 
 bash /home/pi/RetroPie/retropiemenu/L4Menu.sh

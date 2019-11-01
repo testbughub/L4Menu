@@ -23,19 +23,20 @@ types=(
 # }
 # romsync
 
-function romsync() {
-  for type in ${types[@]}; do
-    if whiptail --title "ROM Sync" --yesno "This will sync ROM's from the server to RetroPie.\nContinue?" 10 40 2 ; then
-      if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
-        unison $RMOUNTPATH/$type /home/pi/RetroPie/roms/$type -batch -ignore $type
-        umount $RMOUNTPATH
-      else
-        whiptail --title "ROM Sync" --msgbox "Unable to mount the server" 10 40 2
-        bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-      fi
-    else
-      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-    fi
-  done
-}
-romsync
+if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
+  if whiptail --title "ROM Sync" --yesno "This will sync ROM's from the server to RetroPie.\nDepending on how many ROM's you have, this can take a long time.\nContinue?" 10 40 2 ; then
+    function romsync() {
+      for type in ${types[@]}; do
+        if grep -q "^$type$" $exclude ; then
+          echo "$type is excluded"
+        else
+          unison $RMOUNTPATH/$type /home/pi/RetroPie/roms/$type -batch
+        fi
+      done
+    }
+    romsync
+  fi
+fi
+umount $RMOUNTPATH
+
+bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
