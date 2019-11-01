@@ -47,7 +47,8 @@ Either plug in a keyboard and press F4, or SSH into your device and run uninstal
 Done!
 
 ### To-do
-* ~~ROM sync~~ (Not working at the moment)
+* Rework the main menu
+* ~~ROM sync~~
 * Custom selections for mount points
 * ~~Script update option~~
 * VPN options
