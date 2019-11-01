@@ -35,11 +35,12 @@ if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset
       done
     }
     romsync
-    sleep 3
-    sudo umount $RMOUNTPATH
     whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 10 40 2
   fi
 fi
 
+sleep 3
+
+sudo umount $RMOUNTPATH
 
 sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
