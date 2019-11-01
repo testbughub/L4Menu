@@ -30,7 +30,7 @@ if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset
         if grep -q "^$type$" $exclude ; then
           echo "$type is excluded"
         else
-          unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -batch
+          unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -batch -silent
         fi
       done
     }
