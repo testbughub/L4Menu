@@ -42,4 +42,6 @@ sleep 3
 
 umount $RMOUNTPATH
 
+whiptail --title "ROM Sync" --msgbox "Successfully synced with the server."
+
 bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
