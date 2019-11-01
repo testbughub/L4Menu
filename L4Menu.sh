@@ -219,6 +219,7 @@ function L4Menu() {
       esac
     ;;
     6)
+    sudo umount $RMOUNTPATH
     rm -rf /root/.unison/
     rm -rf /home/pi/.unison/
     RSSEL=$(whiptail \
