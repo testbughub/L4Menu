@@ -37,6 +37,9 @@ if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset
     romsync
   fi
 fi
+
+sleep 3
+
 umount $RMOUNTPATH
 
 bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
