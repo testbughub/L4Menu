@@ -34,10 +34,11 @@ if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset
         fi
       done
     }
-    romsync
-    whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 10 40 2
   fi
 fi
+romsync
+
+whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 10 40 2
 
 sleep 3
 
