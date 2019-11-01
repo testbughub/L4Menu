@@ -219,6 +219,8 @@ function L4Menu() {
       esac
     ;;
     6)
+    rm -rf /root/.unison/
+    rm -rf /home/pi/.unison/
     RSSEL=$(whiptail \
     --title "ROM Sync" \
     --menu "Select option" 13 40 5 \
