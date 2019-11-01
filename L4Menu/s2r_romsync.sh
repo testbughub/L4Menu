@@ -3,7 +3,6 @@
 SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
 RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
 exclude=/usr/share/L4Menu/exclusions.txt
-include=/usr/share/L4Menu/include.txt
 types=(
   amstradpc arcade atari2600 atari5200 atari7800 atari800 atarilynx daphne fba
   fds gamegear gb gba gbc gc genesis mame-advmame mame-libretro mame-mame4all
@@ -22,6 +21,7 @@ types=(
 #   done
 # }
 # romsync
+
 
 if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
   if whiptail --title "ROM Sync" --yesno "This will sync ROM's from the server to RetroPie.\nDepending on how many ROM's you have, this can take a long time.\nContinue?" 10 40 2 ; then
