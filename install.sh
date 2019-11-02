@@ -8,7 +8,7 @@ fi
 if whiptail --title "Install" --yesno "This will install L4Menu on your device.\nContinue?" 10 40 2 ;
 then
   if [ -f /usr/bin/unison ]; then
-    echo "unison is installed"
+    echo "unison is installed" > /dev/null
   else
     apt update && apt install unison
   fi

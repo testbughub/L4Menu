@@ -4,7 +4,6 @@ SUNAME=$(cat /home/pi/.smbcredentials | head -n1 | cut -c10-32)
 SPASS=$(cat /home/pi/.smbcredentials | tail -n1 | cut -c10-32)
 RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
 SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
-EXCLUSIONS=$(cat /usr/share/L4Menu/exclusions.txt)
 
 function L4Menu() {
   MMSEL=$(whiptail \
