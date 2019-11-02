@@ -147,19 +147,20 @@ function L4Menu() {
     fi
   ;;
     5)
-    cd /home/pi/RetroPie/retropiemenu/
-    if wget https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu.sh ;
-    then
-      wget -O /usr/share/L4Menu/L4Menu/exclusions.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu/exclusions.sh
-      wget -O /usr/share/L4Menu/L4Menu/r2s_romsync.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu/r2s_romsync.sh
-      wget -O /usr/share/L4Menu/L4Menu/s2r_romsync.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu/s2r_romsync.sh
-      whiptail --title "Update" --msgbox "Successfully updated L4Menu.\nPlease rerun the script." 10 40 2
-      exit 0
-    else
-      whiptail --title "Update" --msgbox "Unable to update L4Menu" 10 40 2
-      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
-    fi
-    cd -
+    bash /usr/share/L4Menu/L4Menu/update.sh
+    # cd /home/pi/RetroPie/retropiemenu/
+    # if wget https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu.sh ;
+    # then
+    #   wget -O /usr/share/L4Menu/L4Menu/exclusions.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu/exclusions.sh
+    #   wget -O /usr/share/L4Menu/L4Menu/r2s_romsync.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu/r2s_romsync.sh
+    #   wget -O /usr/share/L4Menu/L4Menu/s2r_romsync.sh https://raw.githubusercontent.com/testbughub/L4Menu/master/L4Menu/s2r_romsync.sh
+    #   whiptail --title "Update" --msgbox "Successfully updated L4Menu.\nPlease rerun the script." 10 40 2
+    #   exit 0
+    # else
+    #   whiptail --title "Update" --msgbox "Unable to update L4Menu" 10 40 2
+    #   bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+    # fi
+    # cd -
     ;;
   esac
 }
