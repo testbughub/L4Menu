@@ -55,7 +55,7 @@ Done!
 * VPN options
 * Different name?
 * ~~Custom exclusions~~
-* ???  
+* Fix controls  
 
 ### Known issues
 * Need to press B to select an option when using an GPi.  
