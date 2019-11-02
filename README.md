@@ -51,7 +51,7 @@ Done!
 * ~~ROM sync~~
 * Rework save state sync
 * Custom selections for mount points
-* Script update option
+* ~~Script update option~~
 * VPN options
 * Different name?
 * ~~Custom exclusions~~
