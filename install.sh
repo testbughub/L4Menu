@@ -7,7 +7,11 @@ if [[ $EUID -ne 0 ]]; then
 fi
 if whiptail --title "Install" --yesno "This will install L4Menu on your device.\nContinue?" 10 40 2 ;
 then
-  apt update && apt install unison
+  if [ -f /usr/bin/unison ]; then
+    echo "unison is installed"
+  else
+    apt update && apt install unison
+  fi
   SAMIP=$(whiptail --title "Samba" --inputbox "What is the server IP?" 10 40 3>&1 1>&2 2>&3)
   UNAME=$(whiptail --title "Samba" --inputbox "What is your username for Samba?" 10 40 3>&1 1>&2 2>&3)
   PWORD=$(whiptail --title "Samba" --passwordbox "What is your password for Samba?" 10 40 3>&1 1>&2 2>&3)
