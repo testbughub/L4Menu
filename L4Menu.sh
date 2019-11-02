@@ -77,13 +77,17 @@ function L4Menu() {
     --title "ROM Sync" \
     --menu "Select option" 13 40 5 \
     "1" "RetroPie > Server" \
-    "2" "Server > RetroPie" 3>&1 1>&2 2>&3)
+    "2" "Server > RetroPie" \
+    "3" "Exclusions" 3>&1 1>&2 2>&3)
     case $RSSEL in
       1)
       bash /usr/share/L4Menu/L4Menu/r2s_romsync.sh
       ;;
       2)
       bash /usr/share/L4Menu/L4Menu/s2r_romsync.sh
+      ;;
+      3)
+      bash /usr/share/L4Menu/L4Menu/exclusions.sh
       ;;
       *)
       bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
