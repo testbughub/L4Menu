@@ -1,11 +1,12 @@
 #!/bin/bash
 
+cd /home/pi/L4Menu/
+
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
-cd /home/pi/L4Menu/
 
 if [ $LOCAL = $REMOTE ]; then
     echo "Up-to-date"
