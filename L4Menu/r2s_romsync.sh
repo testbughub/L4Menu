@@ -22,21 +22,24 @@ types=(
 # }
 # romsync
 
+sudo rm -rf /root/.unison/
+sudo rm -rf /home/pi/.unison/
+
+function romsync() {
+  for type in ${types[@]}; do
+    if grep -q "^$type$" $exclude ; then
+      echo "$type is excluded"
+    else
+      unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -batch -ignorearchives -contactquietly
+    fi
+  done
+}
 
 if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
   if whiptail --title "ROM Sync" --yesno "This will sync ROM's from RetroPie to the server.\nDepending on how many ROM's you have, this can take a long time.\nContinue?" 10 40 2 ; then
-    function romsync() {
-      for type in ${types[@]}; do
-        if grep -q "^$type$" $exclude ; then
-          echo "$type is excluded"
-        else
-          unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -batch -silent
-        fi
-      done
-    }
+    romsync
   fi
 fi
-romsync
 
 whiptail --title "ROM Sync" --msgbox "Successfully synced with the server." 10 40 2
 

@@ -220,8 +220,6 @@ function L4Menu() {
     ;;
     6)
     sudo umount $RMOUNTPATH
-    sudo rm -rf /root/.unison/
-    sudo rm -rf /home/pi/.unison/
     RSSEL=$(whiptail \
     --title "ROM Sync" \
     --menu "Select option" 13 40 5 \
