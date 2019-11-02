@@ -9,7 +9,7 @@ EXCLUSIONS=$(cat /usr/share/L4Menu/exclusions.txt)
 function L4Menu() {
   MMSEL=$(whiptail \
   --title "L4 Menu" \
-  --menu "Select option" 13 40 7 \
+  --menu "Select option" 13 40 5 \
   "1" "Show IP" \
   "2" "Mount options" \
   "3" "ROM Sync" \
