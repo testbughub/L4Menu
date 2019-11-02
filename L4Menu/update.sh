@@ -2,20 +2,11 @@
 
 cd /home/pi/L4Menu/
 
-UPSTREAM=${1:-'@{u}'}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
-BASE=$(git merge-base @ "$UPSTREAM")
+git remote update
 
-
-if [ $LOCAL = $REMOTE ]; then
-    echo "Up-to-date"
-elif [ $LOCAL = $BASE ]; then
-    echo "Need to pull"
-elif [ $REMOTE = $BASE ]; then
-    echo "Need to push"
-else
-    echo "Diverged"
-fi
+sudo cp ./L4Menu.sh /home/pi/RetroPie/retropiemenu/
+sudo cp ./L4Menu/update.sh /usr/share/L4Menu/L4Menu/
+sudo cp ./L4Menu/s2r_romsync.sh /usr/share/L4Menu/L4Menu/
+sudo cp ./L4Menu/r2s_romsync.sh /usr/share/L4Menu/L4Menu/
 
 bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
