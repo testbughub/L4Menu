@@ -23,9 +23,6 @@ function mainsync() {
         2)
         bash /usr/share/L4Menu/L4Menu/s2r_savesync.sh
         ;;
-        3)
-        bash /usr/share/L4Menu/L4Menu/exclusions.sh
-        ;;
         *)
         bash /usr/share/L4Menu/L4Menu/sync.sh
         ;;
@@ -53,6 +50,12 @@ function mainsync() {
       esac
     }
     romsync
+    ;;
+    3)
+    bash /usr/share/L4Menu/L4Menu/exclusions.sh
+    ;;
+    *)
+    bash /usr/share/L4Menu/L4Menu.sh
     ;;
   esac
 }
