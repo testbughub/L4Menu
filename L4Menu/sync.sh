@@ -6,7 +6,8 @@ function mainsync() {
   --title "Sync" \
   --menu "Select option" 10 40 2 \
   "1" "Save State Sync" \
-  "2" "ROM Sync" 3>&1 1>&2 2>&3)
+  "2" "ROM Sync" \
+  "3" "Exclusions" 3>&1 1>&2 2>&3)
   case $MSSEL in
     1)
     function savesync(){
@@ -21,6 +22,9 @@ function mainsync() {
         ;;
         2)
         bash /usr/share/L4Menu/L4Menu/s2r_savesync.sh
+        ;;
+        3)
+        bash /usr/share/L4Menu/L4Menu/exclusions.sh
         ;;
         *)
         bash /usr/share/L4Menu/L4Menu/sync.sh
