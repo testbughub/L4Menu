@@ -71,25 +71,7 @@ function L4Menu() {
     esac
     ;;
     3)
-    sudo umount $RMOUNTPATH
-    RSSEL=$(whiptail \
-    --title "ROM Sync" \
-    --menu "Select option" 13 40 5 \
-    "1" "RetroPie > Server" \
-    "2" "Server > RetroPie" \
-    "3" "Exclusions" 3>&1 1>&2 2>&3)
-    case $RSSEL in
-      1)
-      bash /usr/share/L4Menu/L4Menu/r2s_romsync.sh
-      ;;
-      2)
-      bash /usr/share/L4Menu/L4Menu/s2r_romsync.sh
-      ;;
-      3)
-      bash /usr/share/L4Menu/L4Menu/exclusions.sh
-      ;;
-      *)
-      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+      bash /usr/share/L4Menu/L4Menu/sync.sh
       ;;
     esac
     ;;
