@@ -4,7 +4,7 @@
 function mainsync() {
   MSSEL=$(whiptail \
   --title "Sync" \
-  --menu "Select option" 10 40 2 \
+  --menu "Select option" 10 40 3 \
   "1" "Save State Sync" \
   "2" "ROM Sync" \
   "3" "Exclusions" 3>&1 1>&2 2>&3)
