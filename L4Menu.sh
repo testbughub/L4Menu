@@ -10,10 +10,10 @@ function L4Menu() {
   --title "L4 Menu" \
   --menu "Select option" 13 40 5 \
   "1" "Show IP" \
-  "2" "Mount options" \
-  "3" "ROM Sync" \
+  "2" "Mount" \
+  "3" "Sync" \
   "4" "VPN" \
-  "5" "Update script" 3>&1 1>&2 2>&3)
+  "5" "Update" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
     IPL=$(hostname -I)
