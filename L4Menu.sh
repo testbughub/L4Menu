@@ -73,8 +73,6 @@ function L4Menu() {
     3)
       bash /usr/share/L4Menu/L4Menu/sync.sh
       ;;
-    esac
-    ;;
     4)
     bash /usr/share/L4Menu/L4Menu/vpn.sh
     ;;
