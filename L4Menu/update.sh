@@ -1,7 +1,9 @@
 #!/bin/bash
 
 
-if git remote update ; then
+cd /home/pi/L4Menu
+
+if sudo git remote update ; then
   sudo cp /home/pi/L4Menu/L4Menu.sh /home/pi/RetroPie/retropiemenu/
   sudo cp /home/pi/L4Menu/L4Menu/update.sh /usr/share/L4Menu/L4Menu/
   sudo cp /home/pi/L4Menu/L4Menu/s2r_romsync.sh /usr/share/L4Menu/L4Menu/
