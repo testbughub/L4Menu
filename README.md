@@ -3,13 +3,20 @@
 L4 Menu for RetroPie
 
 ## Description
-This is a collection of scripts for RetroPie to sync ROM's to or from a server.  
+This is a collection of scripts for RetroPie to,  
+for example, sync save states to or from a server.  
+
+PS  
 I'm going to be honest and say that I'm in no way a professional programmer.  
 I just made this for fun and to learn.  
 Any improvements or suggestions is always welcome.
 
-PS  
-There's probably a lot of emulators it doesn't cover. If you feel any should be added, let me know.
+## Features
+* Show current local and public (if connected) IP addresses
+* Mount options for a server (WIP)
+* Sync your save states and ROM's with a server (WIP)
+* Connect to your server through VPN (if connected)
+* Add my custom Shutdown/Boot Splashscreen
 
 ## Install
 Either plug in a keyboard and press F4, or SSH into your device and then run install.sh as root.  
@@ -19,10 +26,10 @@ Done!
 This can be used inside RetroPie menu, however to change paths, you need a keyboard (Press Right and B to select(temporary)).
 
 ## Server Samba
-For syncing to work, you need to share certain paths with samba on your server.  
-Edit your /etc/samba/smb.conf and add the following lines and restart the samba service;
+For syncing to work, you need to share your ROM's folder with samba on your server.  
 
-#### ROMS
+#### Linux
+Edit your /etc/samba/smb.conf and add the following lines and restart the samba service;
 ```
 [roms]
    path = /path/to/your/roms
