@@ -22,7 +22,7 @@ then
   chown pi:pi /home/pi/RetroPie/retropiemenu/icons/L4.png
   mkdir /usr/share/L4Menu/
   cp -r ./L4Menu/ /usr/share/L4Menu/
-  mkdir /mnt/roms /mnt/skyscraper
+  mkdir /mnt/roms
   touch /usr/share/L4Menu/exclusions.txt
   touch /usr/share/L4Menu/PATHS.txt
   echo "/mnt/roms" > /usr/share/L4Menu/PATHS.txt
