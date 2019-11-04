@@ -1,6 +1,6 @@
 # WIP
 
-L4 Menu for RetroPie
+L4Menu for RetroPie
 
 ## Description
 This is a collection of scripts for RetroPie to,  
@@ -54,7 +54,7 @@ Done!
 * VPN options
 * Different name?
 * ~~Custom exclusions~~
-* Fix controls  
+* Fix controls for GPi  
 
 ### Known issues
 * Need to press B to select an option when using an GPi.  
@@ -62,4 +62,4 @@ Done!
 * ??
 
 ### Special Thanks
-GeneralDuty @ reddit for the exclusion code
+GeneralDuty @ reddit for exclusion code
