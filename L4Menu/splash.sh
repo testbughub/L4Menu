@@ -11,6 +11,8 @@ case $SPSEL in
     # wget -O /home/pi/RetroPie/splashscreens/Rpz_on.mp4 https://github.com/testbughub/L4Menu_extras/raw/master/extras/RPz_on.mp4
     echo "Not implemented yet!"
     bash /usr/share/L4Menu/L4Menu/splash.sh
+  else
+    bash /usr/share/L4Menu/L4Menu/splash.sh
   fi
   ;;
   2)
