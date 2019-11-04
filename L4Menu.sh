@@ -3,6 +3,22 @@
 RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
 SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
 
+
+cd /home/pi/L4Menu
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse "$UPSTREAM")
+BASE=$(git merge-base @ "$UPSTREAM")
+
+
+if [ $LOCAL = $REMOTE ]; then
+    echo "Up-to-date"
+elif [ $LOCAL = $BASE ]; then
+    if whiptail --title "A new version is available.\nDo you want to update?" 10 40 3 ; then
+      bash /usr/share/L4Menu/L4Menu/update.sh
+    fi
+fi
+
 function L4Menu() {
   MMSEL=$(whiptail \
   --title "L4 Menu" \
