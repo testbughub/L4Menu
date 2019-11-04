@@ -23,7 +23,8 @@ Either plug in a keyboard and press F4, or SSH into your device and then run ins
 Done!
 
 ## Running
-This can be used inside RetroPie menu, however to change paths, you need a keyboard (Press Right and B to select(temporary)).
+This can be used inside RetroPie menu, however to change paths,  
+you need a keyboard (Press Right and B to select(temporary)).
 
 ## Server Samba
 For syncing to work, you need to share your ROM's folder with samba on your server.  
