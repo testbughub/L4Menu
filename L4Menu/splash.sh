@@ -8,9 +8,9 @@ SPSEL=$(whiptail \
 case $SPSEL in
   1)
   if whiptail --title "Boot Splash" --yesno "This will install my custom boot splashscreen.\nContinue?" 10 40 3 ; then
-    # wget -O /home/pi/RetroPie/splashscreens/Rpz_on.mp4 https://github.com/testbughub/L4Menu_extras/raw/master/extras/RPz_on.mp4
-    echo "Not implemented yet!"
-    sleep 5
+    wget -O /home/pi/RetroPie/splashscreens/RPz_on.mp4 https://github.com/testbughub/L4Menu_extras/raw/master/extras/RPz_on.mp4
+    echo "/home/pi/RetroPie/splashscreens/RPz_on.mp4" > /etc/splashscreen.list
+    whiptail --title "Boot Splash" --msgbox "Successfully installed the boot splash.\nReboot to see effect." 10 40 3
     bash /usr/share/L4Menu/L4Menu/splash.sh
   else
     bash /usr/share/L4Menu/L4Menu/splash.sh
