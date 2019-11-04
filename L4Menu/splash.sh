@@ -20,7 +20,7 @@ case $SPSEL in
   if whiptail --title "Shutdown Splash" --yesno "This will install my custom shutdown splashscreen.\nContinue?" 10 40 3 ; then
     sudo cp /opt/RetroFlag/SafeShutdown.py /opt/RetroFlag/SafeShutdown.py.bak
     sudo wget -O /opt/RetroFlag/SafeShutdown.py https://raw.githubusercontent.com/testbughub/L4Menu_extras/master/extras/SafeShutdown.py
-    wget -O /home/pi/RetroPie/splashscreens/Rpz_off.mp4 https://github.com/testbughub/L4Menu_extras/raw/master/extras/RPz_off.mp4
+    wget -O /home/pi/RetroPie/splashscreens/RPz_off.mp4 https://github.com/testbughub/L4Menu_extras/raw/master/extras/RPz_off.mp4
     sudo chown -R pi:pi /home/pi/RetroPie/splashscreens/Rpz*
     whiptail --title "Shutdown Splash" --msgbox "Successfully installed the shutdown splash.\nReboot to see effect." 10 40 3
   else
