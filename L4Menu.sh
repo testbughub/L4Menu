@@ -1,19 +1,18 @@
 #!/bin/bash
 
-SUNAME=$(cat /home/pi/.smbcredentials | head -n1 | cut -c10-32)
-SPASS=$(cat /home/pi/.smbcredentials | tail -n1 | cut -c10-32)
 RMOUNTPATH=$(cat /usr/share/L4Menu/PATHS.txt)
 SERVERIP=$(cat /usr/share/L4Menu/SERVER.txt)
 
 function L4Menu() {
   MMSEL=$(whiptail \
   --title "L4 Menu" \
-  --menu "Select option" 13 40 5 \
+  --menu "Select option" 13 40 6 \
   "1" "Show IP" \
   "2" "Mount" \
   "3" "Sync" \
   "4" "VPN" \
-  "5" "Update" 3>&1 1>&2 2>&3)
+  "5" "Extras" \
+  "6" "Update" 3>&1 1>&2 2>&3)
   case $MMSEL in
     1)
     IPL=$(hostname -I)
@@ -77,6 +76,9 @@ function L4Menu() {
     bash /usr/share/L4Menu/L4Menu/vpn.sh
     ;;
     5)
+    bash /usr/share/L4Menu/L4Menu/extras.sh
+    ;;
+    6)
     bash /usr/share/L4Menu/L4Menu/update.sh
     ;;
   esac
