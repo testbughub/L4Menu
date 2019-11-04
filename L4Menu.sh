@@ -19,6 +19,8 @@ elif [ $LOCAL = $BASE ]; then
     fi
 fi
 
+cd -
+
 function L4Menu() {
   MMSEL=$(whiptail \
   --title "L4 Menu" \
