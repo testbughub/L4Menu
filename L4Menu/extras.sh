@@ -13,6 +13,6 @@ case $ESEL in
   bash /usr/share/L4Menu/L4Menu/extras.sh
   ;;
   *)
-  bash /usr/share/L4Menu/L4Menu/extras.sh
+  bash /usr/share/L4Menu/L4Menu/L4Menu.sh
   ;;
 esac
