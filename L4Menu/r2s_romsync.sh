@@ -25,7 +25,7 @@ function romsync() {
 }
 
 if sudo mount -t cifs -o credentials=/home/pi/.smbcredentials,uid=1000,iocharset=utf8 //$SERVERIP/roms $RMOUNTPATH ; then
-  if whiptail --title "Sync > ROM" --yesno "This will sync ROM's from RetroPie to the server.\nDepending on how many ROM's you have, this can take a long time.\nContinue?" 10 40 3 ; then
+  if whiptail --title "Sync > ROM" --yesno "This will sync ROM's from RetroPie to the server.\nDepending on how many ROM's you have, this can take a long time.\nContinue?" 10 40 4 ; then
     romsync
   fi
 else
