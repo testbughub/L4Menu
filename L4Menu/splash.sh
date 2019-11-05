@@ -27,6 +27,7 @@ case $SPSEL in
     wget -O /home/pi/RetroPie/splashscreens/RPz_off.mp4 https://github.com/testbughub/L4Menu_extras/raw/master/extras/RPz_off.mp4
     sudo chown -R pi:pi /home/pi/RetroPie/splashscreens/RPz*
     whiptail --title "Shutdown Splash" --msgbox "Successfully installed the shutdown splash.\nReboot to see effect." 10 40 3
+    bash /usr/share/L4Menu/L4Menu/splash.sh
   else
     bash /usr/share/L4Menu/L4Menu/splash.sh
   fi
