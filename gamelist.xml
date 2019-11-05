@@ -162,8 +162,8 @@
 	</game>
 	<game>
 		<path>./L4Menu.sh</path>
-		<name>L4 Menu</name>
-		<desc>L4 Menu for advanced configuration.</desc>
+		<name>L4Menu</name>
+		<desc>L4Menu for advanced configuration.</desc>
 		<image>./icons/L4.png</image>
 		<playcount>0</playcount>
 		<lastplayed>20190928T144320</lastplayed>
