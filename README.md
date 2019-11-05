@@ -59,7 +59,6 @@ Done!
 ### Known issues
 * Need to press B to select an option when using an GPi.  
 * Can't use custom exclusions menu on GPi.
-* ??
 
 ### Special Thanks
 GeneralDuty @ reddit for exclusion code
