@@ -2,6 +2,8 @@
 
 L4Menu for RetroPie
 
+![Screenshot](/screenshot.png?raw=true "Screenshot")
+
 ## Description
 This is a collection of scripts for RetroPie to,  
 for example, sync save states to or from a server.  
