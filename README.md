@@ -7,6 +7,7 @@ L4Menu for RetroPie
 ## Description
 This is a collection of scripts for RetroPie to,  
 for example, sync save states to or from a server.  
+It has mostly been tested on the RetroFlag GPi case, but should work on any Raspberry Pi system.
 
 PS  
 I'm going to be honest and say that I'm in no way a professional programmer.  
