@@ -33,7 +33,11 @@ then
   echo password=$PWORD >> /home/pi/.smbcredentials
   chmod 600 /home/pi/.smbcredentials
   chown pi:pi /home/pi/.smbcredentials
-  whiptail --title "Install" --msgbox "Install complete!\nRestart ES to update the menu." 10 40 2
+  if whiptail --title "Install" --yesno "Do you want to set up exclusions?\nThis can be done later." 10 40 3 ; then
+    bash /usr/share/L4Menu/L4Menu/exclusions.sh
+  else
+    whiptail --title "Install" --msgbox "Install complete!\nRestart ES to update the menu." 10 40 2
+  fi
 else
   exit 1
 fi
