@@ -68,6 +68,10 @@ function L4Menu() {
       else
         sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
       fi
+      ;;
+      *)
+      bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
+      ;;
     esac
     ;;
     3)
