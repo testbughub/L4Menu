@@ -23,7 +23,6 @@ function exclusions() {
 
 exclusions
 
-echo $file
 whiptail --title "Exclusions" --msgbox "The following emulators will now be excluded from syncing:\n\n$(cat /usr/share/L4Menu/exclusions.txt)" 20 30
 
 bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
