@@ -17,7 +17,7 @@ then
   PWORD=$(whiptail --title "Samba" --passwordbox "What is your password for Samba?" 10 40 3>&1 1>&2 2>&3)
   cp ./L4Menu.sh /home/pi/RetroPie/retropiemenu/
   cp /home/pi/.emulationstation/gamelists/retropie/gamelist.xml /home/pi/.emulationstation/gamelists/retropie/gamelist.xml.bak
-  cp ./gamelist.xml /home/pi/.emulationstation/gamelists/retropie/
+  sed -i -e '/^<gameList>/r ./gamelist.xml' /home/pi/.emulationstation/gamelists/retropie/gamelist.xml
   chown pi:pi /home/pi/.emulationstation/gamelists/retropie/gamelist.xml
   cp ./L4.png /home/pi/RetroPie/retropiemenu/icons/
   chown pi:pi /home/pi/RetroPie/retropiemenu/icons/L4.png
