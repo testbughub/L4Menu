@@ -19,7 +19,7 @@ function romsync() {
     if grep -q "^$type$" $exclude ; then
       echo "$type is excluded"
     else
-      unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -batch -ignorearchives -contactquietly
+      unison /home/pi/RetroPie/roms/$type $RMOUNTPATH/$type -owner -batch -ignorearchives -contactquietly
     fi
   done
 }
