@@ -54,3 +54,5 @@ else
   whiptail --title "VPN > server" --msgbox "Couldn't find required VPN file.\nLook in README for more info." 10 40 2
   sudo bash /home/pi/RetroPie/retropiemenu/L4Menu.sh
 fi
+
+sudo bash /home/pi/RetroPie/retropiemenu/L4menu.sh
