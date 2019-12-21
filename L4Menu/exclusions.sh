@@ -2,7 +2,7 @@
 
 file=/usr/share/L4Menu/exclusions.txt
 types=(
-  amstradpc arcade atari2600 atari5200 atari7800 atari800 atarilynx daphne fba
+  amstradpc arcade atari2600 atari5200 atari7800 atari800 atarilynx daphne dreamcast fba
   fds gamegear gb gba gbc gc genesis mame-advmame mame-libretro mame-mame4all
   mastersystem megadrive n64 nds neogeo nes ngp ngpc ports ps2 psp psx sega32x
   segacd sg-1000 snes vectrex wii zxspectrum
