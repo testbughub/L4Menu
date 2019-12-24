@@ -12,7 +12,9 @@ case $SPSEL in
     sudo chown -R pi:pi /home/pi/RetroPie/splashscreens/RPz*
     echo "/home/pi/RetroPie/splashscreens/RPz_on.mp4" > /etc/splashscreen.list
     if whiptail --title "Boot Splash" --yesno "Would you like to hide the EmulationStation splash?" 10 40 2 ; then
-      echo '<bool name="SplashScreen" value="false" />' >> /home/pi/.emulationstation/es_settings.cfg
+      # echo '<bool name="SplashScreen" value="false" />' >> /home/pi/.emulationstation/es_settings.cfg
+      cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.bak
+      echo "emulationstation --no-splash #auto" > /opt/retropie/configs/all/autostart.sh
     fi
     whiptail --title "Boot Splash" --msgbox "Successfully installed the boot splash.\nReboot to see effect." 10 40 3
     bash /usr/share/L4Menu/L4Menu/splash.sh
