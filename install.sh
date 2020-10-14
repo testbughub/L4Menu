@@ -10,7 +10,7 @@ then
   if [ -f /usr/bin/unison ]; then
     echo "unison is installed" > /dev/null
   else
-    apt update && apt install unison -y
+    apt-get update && apt-get install unison -y
   fi
   SAMIP=$(whiptail --title "Samba" --inputbox "What is the server IP?" 10 40 3>&1 1>&2 2>&3)
   UNAME=$(whiptail --title "Samba" --inputbox "What is your username for Samba?" 10 40 3>&1 1>&2 2>&3)
